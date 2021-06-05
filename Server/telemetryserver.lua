@@ -6,7 +6,7 @@ local clients = {}
 
 function split(input, seperator)
     if seperator == nil then
-        sep = "/"
+        seperator = "/"
     end
 
     local t={}
@@ -69,8 +69,9 @@ function start()
 
     while true do
         senderId, message, proto = rednet.receive(protocol)
+        strings = string.gmatch(message, "[^%s]+")
 
-        strings = split(message, ' ')
+        print(strings[0])
 
         if(strings[0] == 'cmd_broadcast') then
             local msg = string.sub(message, 13, string.len(message))
