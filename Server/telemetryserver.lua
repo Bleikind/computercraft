@@ -82,6 +82,14 @@ function start()
             print(senderId .. ': ' .. msg)
         end
 
+        if strings[1] == "cmd_active" then
+            print("Turtle connecting...")
+
+            for index, value in ipairs(clients) do
+                rednet.send(value, 'cmd_message' .. strings[2] .. ' connected.', protocol)
+            end
+        end
+
         if strings[1] == "cmd_client_connect" then
             print("Client connecting...")
 
@@ -90,12 +98,13 @@ function start()
                 print(senderId .. " connected.")
             else
                 rednet.send(senderId, "already_logged_in", protocol)
-                print(senderId .. "already conntected.")
+                print(senderId .. "already connected.")
             end
         end
 
     end
 
+    rednet.unhost(protocol, hostname)
     rednet.close(side)
 end
 

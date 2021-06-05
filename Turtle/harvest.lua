@@ -76,7 +76,7 @@ srvID = rednet.lookup("telemetry", "mainsrv")
 rednet.send(srvID, "cmd_active " .. os.getComputerLabel())
 
 while true do
-    wait = 10
+    wait = 1
     minute = 60
     fullTime = wait * minute
 
@@ -88,7 +88,10 @@ while true do
     print('Fuel: ' .. turtle.getFuelLevel() .. ' / ' .. turtle.getFuelLimit())
     print("Do the Ehrenrunde thing: " .. textutils.formatTime(os.time(), true))
 
+    rednet.send(srvID, "cmd_broadcast Starting harvesting. Fuel: " .. turtle.getFuelLevel() .. " / " .. turtle.getFuelLimit(), "telemetry")
+
     refuel()
     go('minecraft:potatoes')
 end
 
+rednet.close()

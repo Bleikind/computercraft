@@ -28,7 +28,7 @@ rednet.open("back")
 srvID = rednet.lookup(protocol, hostname)
 
 rednet.send(srvID, "cmd_client_connect")
-response = rednet.receive(protocol, 10)
+sender, response, proto = rednet.receive(protocol, 10)
 
 if response then
     if response == "logged_in" then
