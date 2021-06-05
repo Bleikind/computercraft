@@ -81,6 +81,7 @@ while true do
         print('Noch ' .. fullTime - i * minute .. ' Sekunden')
     end
 
+    print('Fuel: ' .. turtle.getFuelLevel() .. ' / ' .. turtle.getFuelLimit())
     print("Do the Ehrenrunde thing: " .. textutils.formatTime(os.time(), true))
 
     refuel()
