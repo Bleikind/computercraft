@@ -72,7 +72,14 @@ function go(item_name)
 end
 
 while true do
-    os.sleep(600)
+    wait = 10
+    minute = 60
+    fullTime = wait * minute
+
+    for i = 1, wait, 1 do
+        os.sleep(minute)
+        print('Noch ' .. fullTime - i * minute .. ' Sekunden')
+    end
 
     print("Do the Ehrenrunde thing: " .. textutils.formatTime(os.time(), true))
 
