@@ -73,7 +73,7 @@ end
 
 rednet.open("back")
 srvID = rednet.lookup("telemetry", "mainsrv")
-rednet.send(srvID, "cmd_active " .. os.getComputerLabel())
+rednet.send(srvID, "cmd_active " .. os.getComputerLabel(), "telemetry")
 
 while true do
     wait = 1

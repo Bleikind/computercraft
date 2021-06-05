@@ -27,7 +27,7 @@ end
 rednet.open("back")
 srvID = rednet.lookup(protocol, hostname)
 
-rednet.send(srvID, "cmd_client_connect")
+rednet.send(srvID, "cmd_client_connect", "telemetry")
 sender, response, proto = rednet.receive(protocol, 10)
 
 if response then
