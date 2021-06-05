@@ -29,7 +29,7 @@ function tableLength(t)
 end
 
 function start()
-    if modem.isOpen() then
+    if modem.isOpen(1) then
        error('Modem wird bereits verwendet')
        return
     end
