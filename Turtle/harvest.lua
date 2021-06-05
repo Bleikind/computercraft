@@ -71,6 +71,10 @@ function go(item_name)
     turtle.turnLeft()
 end
 
+rednet.open("back")
+srvID = rednet.lookup("telemetry", "mainsrv")
+rednet.send(srvID, "cmd_active " .. os.getComputerLabel())
+
 while true do
     wait = 10
     minute = 60
