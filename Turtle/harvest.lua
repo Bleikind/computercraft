@@ -32,6 +32,11 @@ function checkRight(item_name)
     turtle.turnLeft()
 end
 
+function checkBlockInfront()
+    local block, inspect = turtle.inspect()
+    return block
+end
+
 function checkWater()
     local block, inspect = turtle.inspectDown()
     if inspect then
@@ -42,17 +47,21 @@ function checkWater()
 end
 
 function go(item_name)
-    while checkWater() do
+    while not checkBlockInfront() do
         checkRight(item_name)
         turtle.forward()
     end
 
-    turtle.back()
     turtle.turnLeft()
     turtle.turnLeft()
 end
 
+while true do
+    os.sleep(600)
 
-refuel()
-go('minecraft:potatoes')
+    print("Do the Ehrenrunde thing: " .. textutils.formatTime(os.time(), true))
+
+    refuel()
+    go('minecraft:potatoes')
+end
 
