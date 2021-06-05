@@ -46,11 +46,26 @@ function checkWater()
     return false
 end
 
+function checkChest()
+    local block, inspect = turtle.inspect()
+
+    if inspect then
+        return inspect.name == 'minecraft:chest'
+    end
+
+    return false
+end
+
 function go(item_name)
     while not checkBlockInfront() do
         checkRight(item_name)
         turtle.forward()
     end
+
+    if checkChest() then
+        turtle.drop()
+    end
+
 
     turtle.turnLeft()
     turtle.turnLeft()
