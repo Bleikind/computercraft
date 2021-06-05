@@ -44,6 +44,7 @@ end
 function go(item_name)
     while checkWater() do
         checkRight(item_name)
+        turtle.forward()
     end
 
     turtle.back()
