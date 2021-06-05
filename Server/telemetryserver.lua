@@ -69,11 +69,11 @@ function start()
 
     while true do
         senderId, message, proto = rednet.receive(protocol)
-        strings = string.gmatch(message, "[^%s]+")
 
-        print(strings[0])
+        strings = split(message, ' ')
 
-        if(strings[0] == 'cmd_broadcast') then
+
+        if(strings[1] == 'cmd_broadcast') then
             local msg = string.sub(message, 13, string.len(message))
 
             for index, value in ipairs(clients) do
@@ -83,7 +83,7 @@ function start()
             print(senderId .. ': ' .. msg)
         end
 
-        if strings[0] == "cmd_client_connect" then
+        if strings[1] == "cmd_client_connect" then
             print("Client connecting...")
 
             if addClient(senderId) then
