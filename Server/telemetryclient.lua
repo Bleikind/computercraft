@@ -44,10 +44,10 @@ while true do
     senderId, message, proto = rednet.receive(protocol)
 
     strings = split(message, ' ')
-    cmd = strings[0]
+    cmd = strings[1]
 
     if cmd == "cmd_message" then
-        messageFrom = strings[1]
+        messageFrom = strings[2]
         msg = table.concat(strings, " ", 2, tableLength(strings))
 
         print(messageFrom .. ': ' .. msg)
