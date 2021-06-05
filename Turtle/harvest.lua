@@ -4,11 +4,10 @@ function checkFuel()
         if selected_slot then
             local data = turtle.getItemDetail();
 
-            if data.name == "minecraft:coal" or data.name == "minecraft:char_coal" then
+            if data == not nil and data.name == "minecraft:coal" then
                 turtle.refuel(turtle.getItemCount())
                 print('Fuel state: ' .. turtle.getFuelLevel() .. " / " .. turtle.getFuelLimit())
             end
-
         else
 
         end
