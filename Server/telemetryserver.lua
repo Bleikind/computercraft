@@ -72,7 +72,6 @@ function start()
 
         strings = split(message, ' ')
 
-
         if(strings[1] == 'cmd_broadcast') then
             local msg = string.sub(message, 13, string.len(message))
 
