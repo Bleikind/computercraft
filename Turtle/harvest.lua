@@ -76,13 +76,15 @@ srvID = rednet.lookup("telemetry", "mainsrv")
 rednet.send(srvID, "cmd_active " .. os.getComputerLabel(), "telemetry")
 
 while true do
-    wait = 1
+    wait = 10
     minute = 60
     fullTime = wait * minute
 
     for i = 1, wait, 1 do
         os.sleep(minute)
-        print('Noch ' .. fullTime - i * minute .. ' Sekunden')
+        countdown = "Noch " .. countdown .. " Sekunden"
+        rednet.send(srvID, "cmd_broadcast " .. countdown, "telemetry")
+        print(countdown)
     end
 
     print('Fuel: ' .. turtle.getFuelLevel() .. ' / ' .. turtle.getFuelLimit())

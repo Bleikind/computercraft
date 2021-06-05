@@ -73,10 +73,10 @@ function start()
         strings = split(message, ' ')
 
         if(strings[1] == 'cmd_broadcast') then
-            local msg = string.sub(message, 13, string.len(message))
+            local msg = string.sub(message, 14, string.len(message))
 
             for index, value in ipairs(clients) do
-                rednet.send(value, 'cmd_message' .. senderId .. ' ' .. msg, protocol)
+                rednet.send(value, 'cmd_message ' .. senderId .. ' ' .. msg, protocol)
             end
 
             print(senderId .. ': ' .. msg)
