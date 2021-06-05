@@ -26,7 +26,7 @@ function split(input, seperator)
     end
 
     local t={}
-    for str in string.gmatch(input, "([^"..sep.."]+)") do
+    for str in string.gmatch(input, "([^"..seperator.."]+)") do
         table.insert(t, str)
     end
 
@@ -40,4 +40,12 @@ function tableLength(t)
     end
 
     return count
+end
+
+print("Downloading: " .. url)
+
+if checkUrl() then
+    download()
+else
+    print("Url invalid.")
 end
