@@ -14,7 +14,7 @@ function refuel()
 end
 
 function harvest(item_name)
-    local inspect = turtle.inspect()
+    local block, inspect = turtle.inspect()
 
     if(inspect) then
         if inspect.name == item_name then
@@ -33,7 +33,7 @@ function checkRight(item_name)
 end
 
 function checkWater()
-    local inspect = turtle.inspectDown()
+    local block, inspect = turtle.inspectDown()
     if inspect then
         return inspect.name == "minecraft:water"
     end
