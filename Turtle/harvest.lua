@@ -71,7 +71,7 @@ function go(item_name)
     turtle.turnLeft()
 end
 
-rednet.open("back")
+rednet.open("left")
 srvID = rednet.lookup("telemetry", "mainsrv")
 rednet.send(srvID, "cmd_active " .. os.getComputerLabel(), "telemetry")
 
