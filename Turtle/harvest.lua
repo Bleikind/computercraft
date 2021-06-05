@@ -8,3 +8,5 @@ function checkFuel()
         end
     end
 end
+
+checkFuel()
