@@ -1,6 +1,6 @@
 local modem = peripheral.find('modem')
 local protocol = "telemetry"
-local hostname = "mainrv"
+local hostname = "mainsrv"
 
 if not modem then
     error('Kein Modem an dem Ding')
@@ -29,11 +29,6 @@ function tableLength(t)
 end
 
 function start()
-    if modem.isOpen(1) then
-       error('Modem wird bereits verwendet')
-       return
-    end
-
     if rednet.lookup(protocol, hostname) then
         error('Hostname wird bereits verwendet')
         return
