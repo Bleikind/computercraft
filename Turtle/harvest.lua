@@ -82,7 +82,7 @@ while true do
 
     for i = 1, wait, 1 do
         os.sleep(minute)
-        countdown = "Noch " .. countdown .. " Sekunden"
+        countdown = "Noch " .. fullTime - i * minute .. " Sekunden"
         rednet.send(srvID, "cmd_broadcast " .. countdown, "telemetry")
         print(countdown)
     end
