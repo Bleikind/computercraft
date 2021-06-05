@@ -86,7 +86,7 @@ function start()
             print("Turtle connecting...")
 
             for index, value in ipairs(clients) do
-                rednet.send(value, 'cmd_message' .. strings[2] .. ' connected.', protocol)
+                rednet.send(value, 'cmd_message ' .. strings[2] .. ' connected.', protocol)
             end
         end
 

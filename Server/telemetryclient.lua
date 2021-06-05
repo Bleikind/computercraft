@@ -48,7 +48,7 @@ while true do
 
     if cmd == "cmd_message" then
         messageFrom = strings[2]
-        msg = table.concat(strings, " ", 2, tableLength(strings))
+        msg = table.concat(strings, " ", 3, tableLength(strings))
 
         print(messageFrom .. ': ' .. msg)
     end
