@@ -33,7 +33,12 @@ function checkRight(item_name)
 end
 
 function checkWater()
-    return turtle.inspectDown().name == "minecraft:water"
+    local inspect = turtle.inspectDown()
+    if inspect then
+        return inspect.name == "minecraft:water"
+    end
+
+    return false
 end
 
 function go(item_name)
