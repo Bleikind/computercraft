@@ -53,5 +53,5 @@ end
 
 
 refuel()
-go()
+go('minecraft:potatoes')
 
