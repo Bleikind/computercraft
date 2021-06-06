@@ -20,9 +20,11 @@ end
 function setStartPosition()
 end
 
-function go()
-    turnDirection = 1
+turnDirection = 1
+count = 0
+full = false
 
+function go()
     for i = 1, width, 1 do
 
         for x = 1, width, 1 do
@@ -41,24 +43,55 @@ function go()
         end
 
         if turnDirection == 1 then
-            turnDirection = 1
-        else
             turnDirection = 2
+        else
+            turnDirection = 1
         end
     end
 
-    turtle.down()
-    turtle.turnRight()
-    turtle.turnRight()
-
-    if(turnDirection == 1) == 1 then
-        turnDirection = 1
-    else
+    if turnDirection == 1 then
         turnDirection = 2
+    else
+        turnDirection = 1
+    end
+
+    turtle.down()
+    count = count + 1
+
+    if count == 2 then
+        block, data = turtle.inspectUp()
+
+        while not block do
+            if data.name == "minecraft:chest" then
+                for i = 1, 16, 1 do
+                    if not turtle.dropUp() then
+                        full = true
+                    end
+                end
+            else
+                if not block then
+                    turtle.up()
+                end
+            end
+        end
+
+
+        blockDown, dataDown = turtle.inspectDown()
+
+        while not block do
+            turtle.down()
+        end
+
+        count = 0
     end
 end
 
 while true do
+
+    if full == true then
+        return
+    end
+
     refuel()
     go()
 end
