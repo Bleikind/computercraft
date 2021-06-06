@@ -66,7 +66,6 @@ function go(item_name)
         turtle.drop()
     end
 
-
     turtle.turnLeft()
     turtle.turnLeft()
 end
