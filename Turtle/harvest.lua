@@ -71,6 +71,11 @@ function go(item_name)
     turtle.turnLeft()
 end
 
+function checkIce()
+    block, data = turtle.inspectDown()
+    return data.name == "minecraft:water"
+end
+
 rednet.open("left")
 srvID = rednet.lookup("telemetry", "mainsrv")
 rednet.send(srvID, "cmd_active " .. os.getComputerLabel(), "telemetry")
@@ -87,13 +92,18 @@ while true do
         print(countdown)
     end
 
-    print('Fuel: ' .. turtle.getFuelLevel() .. ' / ' .. turtle.getFuelLimit())
-    print("Do the Ehrenrunde thing: " .. textutils.formatTime(os.time(), true))
-
-    rednet.send(srvID, "cmd_broadcast Starting harvesting. Fuel: " .. turtle.getFuelLevel() .. " / " .. turtle.getFuelLimit(), "telemetry")
-
-    refuel()
-    go('minecraft:potatoes')
+    if not checkIce() then
+        print('Fuel: ' .. turtle.getFuelLevel() .. ' / ' .. turtle.getFuelLimit())
+        print("Do the Ehrenrunde thing: " .. textutils.formatTime(os.time(), true))
+    
+        rednet.send(srvID, "cmd_broadcast Starting harvesting. Fuel: " .. turtle.getFuelLevel() .. " / " .. turtle.getFuelLimit(), "telemetry")
+    
+        refuel()
+        go('minecraft:potatoes')
+    else
+        print('Joa ice nh')
+        rednet.send(srvID, "cmd_broadcast Can't harvest: ice.", "telemetry")
+    end
 end
 
 rednet.close()
