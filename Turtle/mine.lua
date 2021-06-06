@@ -21,9 +21,10 @@ function setStartPosition()
 end
 
 function go()
-    turnDirection = 1
 
     for i = 1, width, 1 do
+        turnDirection = 1
+
         for x = 1, width, 1 do
             turtle.digDown()
             turtle.forward()
@@ -49,6 +50,12 @@ function go()
     turtle.down()
     turtle.turnRight()
     turtle.turnRight()
+
+    if(turnDirection == 1) == 1 then
+        turnDirection = 2
+    else
+        turnDirection = 1
+    end
 end
 
 while true do
