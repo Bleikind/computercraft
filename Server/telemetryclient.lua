@@ -41,15 +41,27 @@ else
 end
 
 while true do
-    senderId, message, proto = rednet.receive(protocol)
+    senderId, message, proto = rednet.receive()
 
     strings = split(message, ' ')
     cmd = strings[1]
 
-    if cmd == "cmd_message" then
-        messageFrom = strings[2]
-        msg = table.concat(strings, " ", 3, tableLength(strings))
+    if proto == "telemetry" then
+        if cmd == "cmd_message" then
+            messageFrom = strings[2]
+            msg = table.concat(strings, " ", 3, tableLength(strings))
+    
+            print(messageFrom .. ': ' .. msg)
+        end
 
-        print(messageFrom .. ': ' .. msg)
+        if cmd == "cmd_position" then
+            x, y, z = gps.locate()
+            if x then
+                print(senderId .. " asked for my location.")
+                rednet.send(senderId, "cmd_position " .. x .. ":" .. y .. ":" .. z, proto)
+            else
+                rednet.send(senderId, "nil", proto)
+            end
+        end
     end
 end
