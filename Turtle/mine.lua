@@ -39,13 +39,16 @@ function go()
             turtle.turnLeft()
         end
 
-        if(turnDirection == 1) then
+        if(turnDirection == 1) == 1 then
             turnDirection = 2
         else
             turnDirection = 1
         end
     end
-    
+
+    turtle.down()
+    turtle.turnRight()
+    turtle.turnRight()
 end
 
 while true do
