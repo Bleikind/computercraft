@@ -22,7 +22,7 @@ end
 
 turnDirection = 1
 count = 0
-full = false
+interrupt = false
 
 function go()
     for i = 1, width, 1 do
@@ -62,17 +62,17 @@ function go()
         block, data = turtle.inspectUp()
 
         while not block do
-            if data.name == "minecraft:chest" then
-                for i = 1, 16, 1 do
-                    if not turtle.dropUp() then
-                        full = true
-                    end
-                end
-            else
-                if not block then
-                    turtle.up()
+            turtle.up()
+        end
+
+        if data.name == "minecraft:chest" then
+            for i = 1, 16, 1 do
+                if not turtle.dropUp() then
+                    interrupt = true
                 end
             end
+        else
+            interrupt = true
         end
 
 
@@ -88,7 +88,7 @@ end
 
 while true do
 
-    if full == true then
+    if interrupt == true then
         return
     end
 
