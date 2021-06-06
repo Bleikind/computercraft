@@ -72,8 +72,10 @@ function go(item_name)
 end
 
 function checkIce()
+    turtle.forward()
     block, data = turtle.inspectDown()
-    return data.name == "minecraft:water"
+    turtle.back()
+    return data.name == "minecraft:ice"
 end
 
 rednet.open("left")
